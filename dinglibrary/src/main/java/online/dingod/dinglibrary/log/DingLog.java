@@ -4,6 +4,9 @@ import android.util.Log;
 
 import androidx.annotation.NonNull;
 
+import java.util.Arrays;
+import java.util.List;
+
 public class DingLog {
 
     public static void v(Object... contents) {
@@ -69,9 +72,26 @@ public class DingLog {
         }
 
         StringBuilder sb = new StringBuilder();
+
+        if (config.includeThread()) {
+            String threadInfo = DingLogConfig.threadFormatter.format(Thread.currentThread());
+            sb.append(threadInfo).append("\n");
+        }
+
+        if (config.stackTraceDepth() > 0) {
+            String stackTraceInfo = DingLogConfig.stackTraceFormatter.format(new Throwable().getStackTrace());
+            sb.append(stackTraceInfo).append("\n");
+        }
+
         String body = parseBody(contents);
         sb.append(body);
-        Log.println(type, tag, body);
+        List<DingLogPrinter> printers = config.printers() != null ? Arrays.asList(config.printers()) : DingLogManager.getInstance().getPrinters();
+        if (printers == null) {
+            return;
+        }
+        for (DingLogPrinter printer : printers) {
+            printer.print(config, type, tag, sb.toString());
+        }
     }
 
     private static String parseBody(@NonNull Object[] contents) {

@@ -35,9 +35,16 @@ public class DingViewPrinter implements DingLogPrinter{
         viewProvider = new DingViewPrinterProvider(rootView, recyclerView);
     }
 
+    @NonNull
+    public DingViewPrinterProvider getViewProvider() {
+        return viewProvider;
+    }
+
     @Override
     public void print(@NonNull DingLogConfig config, int level, String tag, @NonNull String printString) {
 
+        adapter.addItem(new DingLogMo(System.currentTimeMillis(), level, tag, printString));
+        recyclerView.smoothScrollToPosition(adapter.getItemCount() - 1);
     }
 
     private static class LogViewHolder extends RecyclerView.ViewHolder {
@@ -86,7 +93,7 @@ public class DingViewPrinter implements DingLogPrinter{
 
         @Override
         public int getItemCount() {
-            return 0;
+            return logs.size();
         }
 
         // 根据不同的log级别获取不同的颜色

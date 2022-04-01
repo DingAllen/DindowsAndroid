@@ -2,10 +2,7 @@ package online.dingod.dindowsandroid
 
 import android.app.Application
 import com.google.gson.Gson
-import online.dingod.dinglibrary.log.DingConsolePrinter
-import online.dingod.dinglibrary.log.DingLogConfig
-import online.dingod.dinglibrary.log.DingLogManager
-import online.dingod.dinglibrary.log.DingLogPrinter
+import online.dingod.dinglibrary.log.*
 
 class MApplication : Application() {
     override fun onCreate() {

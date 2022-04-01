@@ -12,7 +12,7 @@ public class DingConsolePrinter implements DingLogPrinter{
 
         int len = printString.length();
         int countOfSub = len / MAX_LEN;
-        if (countOfSub > 0) {
+        if (countOfSub >= 0) {
             int index = 0;
             for (int i = 0; i < countOfSub; i++) {
                 Log.println(level, tag, printString.substring(index, index + MAX_LEN));

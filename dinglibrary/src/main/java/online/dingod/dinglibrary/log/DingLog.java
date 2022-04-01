@@ -9,6 +9,13 @@ import java.util.List;
 
 public class DingLog {
 
+    private static final String DING_LOG_PACKAGE;
+
+    static {
+        String className = DingLog.class.getName();
+        DING_LOG_PACKAGE = className.substring(0, className.lastIndexOf('.') + 1);
+    }
+
     public static void v(Object... contents) {
         log(DingLogType.V, contents);
     }
@@ -79,11 +86,11 @@ public class DingLog {
         }
 
         if (config.stackTraceDepth() > 0) {
-            String stackTraceInfo = DingLogConfig.stackTraceFormatter.format(new Throwable().getStackTrace());
+            String stackTraceInfo = DingLogConfig.stackTraceFormatter.format(DingStackTraceUtil.getCroppedRealStackTrack(new Throwable().getStackTrace(), DING_LOG_PACKAGE, config.stackTraceDepth()));
             sb.append(stackTraceInfo).append("\n");
         }
 
-        String body = parseBody(contents);
+        String body = parseBody(contents, config);
         sb.append(body);
         List<DingLogPrinter> printers = config.printers() != null ? Arrays.asList(config.printers()) : DingLogManager.getInstance().getPrinters();
         if (printers == null) {
@@ -94,7 +101,12 @@ public class DingLog {
         }
     }
 
-    private static String parseBody(@NonNull Object[] contents) {
+    private static String parseBody(@NonNull Object[] contents, @NonNull DingLogConfig config) {
+
+        if (config.injectJsonParser() != null) {
+            return config.injectJsonParser().toJson(contents);
+        }
+
         StringBuilder sb = new StringBuilder();
         for (Object o : contents) {
             sb.append(o.toString()).append(";");

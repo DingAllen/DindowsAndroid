@@ -6,6 +6,8 @@ import android.view.View
 import android.widget.Button
 import online.dingod.dindowsandroid.R
 import online.dingod.dinglibrary.log.DingLog
+import online.dingod.dinglibrary.log.DingLogConfig
+import online.dingod.dinglibrary.log.DingLogType
 
 class DingLogDemoActivity : AppCompatActivity() {
 
@@ -19,6 +21,15 @@ class DingLogDemoActivity : AppCompatActivity() {
     }
 
     private fun printLog() {
+        DingLog.log(object : DingLogConfig() {
+            override fun includeThread(): Boolean {
+                return true
+            }
+
+            override fun stackTraceDepth(): Int {
+                return 0
+            }
+        }, DingLogType.E, "-----", "0216")
         DingLog.a("9900")
     }
 }

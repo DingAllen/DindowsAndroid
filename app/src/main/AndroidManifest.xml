@@ -11,6 +11,9 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.DindowsAndroid">
         <activity
+            android:name=".demo.DingStorageDemoActivity"
+            android:exported="false" />
+        <activity
             android:name=".demo.DingLogDemoActivity"
             android:exported="false" />
         <activity

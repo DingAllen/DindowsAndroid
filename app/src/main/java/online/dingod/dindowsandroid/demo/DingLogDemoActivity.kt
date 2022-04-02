@@ -20,10 +20,10 @@ class DingLogDemoActivity : AppCompatActivity() {
             printLog()
         }
         viewPrinter!!.viewProvider.showFloatingView()
+        DingLogManager.getInstance().addPrinter(viewPrinter)
     }
 
     private fun printLog() {
-        DingLogManager.getInstance().addPrinter(viewPrinter)
         DingLog.log(object : DingLogConfig() {
             override fun includeThread(): Boolean {
                 return true

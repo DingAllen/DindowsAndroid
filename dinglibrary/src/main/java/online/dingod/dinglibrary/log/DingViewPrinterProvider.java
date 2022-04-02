@@ -5,8 +5,10 @@ import android.view.Gravity;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.FrameLayout;
+import android.widget.LinearLayout;
 import android.widget.TextView;
 
+import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
 import online.dingod.dinglibrary.util.DingDisplayUtil;
@@ -37,7 +39,7 @@ public class DingViewPrinterProvider {
         floatingView.setTag(TAG_FLOATING_VIEW);
         floatingView.setBackgroundColor(Color.BLACK);
         floatingView.setAlpha(0.8f);
-        params.bottomMargin = DingDisplayUtil.dp2px(100, recyclerView.getResources());
+        params.bottomMargin = DingDisplayUtil.dp2px(100, rootView.getResources());
         rootView.addView(genFloatingView(), params);
     }
 
@@ -80,7 +82,8 @@ public class DingViewPrinterProvider {
         }
         FrameLayout logView = new FrameLayout(rootView.getContext());
         logView.setBackgroundColor(Color.BLACK);
-        logView.addView(recyclerView);
+        RecyclerView.LayoutParams rparams = new RecyclerView.LayoutParams(ViewGroup.LayoutParams.MATCH_PARENT, ViewGroup.LayoutParams.WRAP_CONTENT);
+        logView.addView(recyclerView, rparams);
         FrameLayout.LayoutParams params = new FrameLayout.LayoutParams(ViewGroup.LayoutParams.WRAP_CONTENT, ViewGroup.LayoutParams.WRAP_CONTENT);
         params.gravity = Gravity.END;
         TextView closeView = new TextView(rootView.getContext());

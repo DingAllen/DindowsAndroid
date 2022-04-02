@@ -1,4 +1,5 @@
 <resources>
     <string name="app_name">DindowsAndroid</string>
     <string name="print_log">打印日志</string>
+    <string name="save">save</string>
 </resources>

@@ -9,7 +9,7 @@ android {
     defaultConfig {
         applicationId "online.dingod.dindowsandroid"
         minSdk 21
-        targetSdk 32
+        targetSdk 28
         versionCode 1
         versionName "1.0"
 
@@ -30,6 +30,8 @@ android {
         jvmTarget = '1.8'
     }
 }
+
+
 
 dependencies {
 

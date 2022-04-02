@@ -4,6 +4,7 @@ import android.app.Application
 import androidx.core.content.ContextCompat
 import com.google.gson.Gson
 import online.dingod.dinglibrary.log.DingConsolePrinter
+import online.dingod.dinglibrary.log.DingFilePrinter
 import online.dingod.dinglibrary.log.DingLogConfig
 import online.dingod.dinglibrary.log.DingLogConfig.JsonParser
 import online.dingod.dinglibrary.log.DingLogManager
@@ -30,7 +31,8 @@ class MApplication : Application() {
                     return JsonParser { src -> Gson().toJson(src) }
                 }
             },
-            DingConsolePrinter()
+            DingConsolePrinter(),
+            DingFilePrinter(PATH)
         )
     }
 }

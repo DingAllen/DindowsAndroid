@@ -25,6 +25,6 @@ public class DingStorageUtil {
 
     public static String getLogPath(String absolutePath) {
 
-        return absolutePath + "/" + getCurrentTime() + ".log";
+        return absolutePath + "/ding_log/" + getCurrentTime() + ".log";
     }
 }

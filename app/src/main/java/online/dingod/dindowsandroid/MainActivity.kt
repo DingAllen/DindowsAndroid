@@ -16,7 +16,7 @@ class MainActivity : AppCompatActivity(), View.OnClickListener {
     override fun onClick(v: View?) {
         when(v!!.id){
             R.id.btn_test -> {
-                startActivity(Intent(this, DingStorageDemoActivity::class.java))
+                startActivity(Intent(this, DingLogDemoActivity::class.java))
             }
         }
     }

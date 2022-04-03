@@ -4,6 +4,7 @@ import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.view.View
+import online.dingod.dindowsandroid.demo.DingBottomDemoActivity
 import online.dingod.dindowsandroid.demo.DingLogDemoActivity
 import online.dingod.dindowsandroid.demo.DingStorageDemoActivity
 
@@ -16,7 +17,7 @@ class MainActivity : AppCompatActivity(), View.OnClickListener {
     override fun onClick(v: View?) {
         when(v!!.id){
             R.id.btn_test -> {
-                startActivity(Intent(this, DingLogDemoActivity::class.java))
+                startActivity(Intent(this, DingBottomDemoActivity::class.java))
             }
         }
     }

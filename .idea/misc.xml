@@ -3,12 +3,20 @@
   <component name="DesignSurface">
     <option name="filePathToZoomLevelMap">
       <map>
+        <entry key="..\:/AndroidProjects/DindowsAndroid/app/src/main/res/drawable-v24/ic_launcher_foreground.xml" value="0.1925" />
+        <entry key="..\:/AndroidProjects/DindowsAndroid/app/src/main/res/drawable/ic_launcher_background.xml" value="0.1925" />
         <entry key="..\:/AndroidProjects/DindowsAndroid/app/src/main/res/layout/activity_ding_bottom_demo.xml" value="0.184375" />
         <entry key="..\:/AndroidProjects/DindowsAndroid/app/src/main/res/layout/activity_ding_log_demo.xml" value="0.1875" />
         <entry key="..\:/AndroidProjects/DindowsAndroid/app/src/main/res/layout/activity_ding_storage_demo.xml" value="0.1875" />
         <entry key="..\:/AndroidProjects/DindowsAndroid/app/src/main/res/layout/activity_main.xml" value="0.22" />
+        <entry key="..\:/AndroidProjects/DindowsAndroid/app/src/main/res/layout/activity_test.xml" value="0.35280797101449274" />
+        <entry key="..\:/AndroidProjects/DindowsAndroid/app/src/main/res/mipmap-anydpi-v26/ic_launcher.xml" value="0.1925" />
+        <entry key="..\:/AndroidProjects/DindowsAndroid/common/src/main/res/layout/activity_base.xml" value="0.184375" />
+        <entry key="..\:/AndroidProjects/DindowsAndroid/common/src/main/res/layout/activity_ding_base.xml" value="0.16979166666666667" />
         <entry key="..\:/AndroidProjects/DindowsAndroid/dinglibrary/src/main/res/layout/hilog_item.xml" value="0.3605072463768116" />
         <entry key="..\:/AndroidProjects/DindowsAndroid/dingui/src/main/res/layout/ding_bottom_layout.xml" value="0.184375" />
+        <entry key="..\:/AndroidProjects/DindowsAndroid/dingui/src/main/res/layout/ding_bottom_layout_bg.xml" value="0.184375" />
+        <entry key="..\:/AndroidProjects/DindowsAndroid/dingui/src/main/res/layout/ding_tab_bottom.xml" value="0.184375" />
         <entry key="..\:/AndroidProjects/DindowsAndroid/dingui/src/main/res/layout/hi_tab_bottom.xml" value="0.35280797101449274" />
       </map>
     </option>

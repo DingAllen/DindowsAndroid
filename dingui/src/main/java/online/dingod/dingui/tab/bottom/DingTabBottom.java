@@ -109,7 +109,7 @@ public class DingTabBottom extends RelativeLayout implements IDingTab<DingTabBot
         ViewGroup.LayoutParams params = getLayoutParams();
         params.height = height;
         setLayoutParams(params);
-        getmIvImage().setVisibility(GONE);
+        getmTvName().setVisibility(GONE);
     }
 
     @Override

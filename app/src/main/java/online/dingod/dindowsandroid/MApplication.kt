@@ -3,6 +3,7 @@ package online.dingod.dindowsandroid
 import android.app.Application
 import androidx.core.content.ContextCompat
 import com.google.gson.Gson
+import online.dingod.common.ui.component.DingBaseApplication
 import online.dingod.dinglibrary.log.DingConsolePrinter
 import online.dingod.dinglibrary.log.DingFilePrinter
 import online.dingod.dinglibrary.log.DingLogConfig
@@ -10,7 +11,7 @@ import online.dingod.dinglibrary.log.DingLogConfig.JsonParser
 import online.dingod.dinglibrary.log.DingLogManager
 
 
-class MApplication : Application() {
+class MApplication : DingBaseApplication() {
 
     var PATH: String? = null
 

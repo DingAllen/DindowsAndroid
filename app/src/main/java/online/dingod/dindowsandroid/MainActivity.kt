@@ -7,6 +7,7 @@ import android.view.View
 import online.dingod.dindowsandroid.demo.DingBottomDemoActivity
 import online.dingod.dindowsandroid.demo.DingLogDemoActivity
 import online.dingod.dindowsandroid.demo.DingStorageDemoActivity
+import online.dingod.dindowsandroid.testproject.TestActivity
 
 class MainActivity : AppCompatActivity(), View.OnClickListener {
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -17,7 +18,7 @@ class MainActivity : AppCompatActivity(), View.OnClickListener {
     override fun onClick(v: View?) {
         when(v!!.id){
             R.id.btn_test -> {
-                startActivity(Intent(this, DingBottomDemoActivity::class.java))
+                startActivity(Intent(this, TestActivity::class.java))
             }
         }
     }

@@ -21,6 +21,9 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.DindowsAndroid">
         <activity
+            android:name=".testproject.TestActivity"
+            android:exported="false" />
+        <activity
             android:name=".demo.DingBottomDemoActivity"
             android:exported="false" />
         <activity

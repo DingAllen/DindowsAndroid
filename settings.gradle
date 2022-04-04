@@ -16,3 +16,4 @@ rootProject.name = "DindowsAndroid"
 include ':app'
 include ':dinglibrary'
 include ':dingui'
+include ':common'

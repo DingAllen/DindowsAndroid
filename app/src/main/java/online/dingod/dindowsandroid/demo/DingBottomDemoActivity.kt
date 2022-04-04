@@ -1,10 +1,12 @@
 package online.dingod.dindowsandroid.demo
 
+import android.graphics.BitmapFactory
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.widget.Toast
 import online.dingod.dindowsandroid.R
 import online.dingod.dinglibrary.log.DingLog
+import online.dingod.dinglibrary.util.DingDisplayUtil
 import online.dingod.dingui.tab.bottom.DingTabBottom
 import online.dingod.dingui.tab.bottom.DingTabBottomInfo
 import online.dingod.dingui.tab.bottom.DingTabBottomLayout
@@ -53,14 +55,28 @@ class DingBottomDemoActivity : AppCompatActivity() {
             "#ff656667",
             "#ffd44949"
         )
+
+        val bitmap1 =
+            BitmapFactory.decodeResource(resources, R.drawable.gift, null)
+        val bitmap2 =
+            BitmapFactory.decodeResource(resources, R.drawable.heart, null)
+        val bitmapInfo = DingTabBottomInfo<String>(
+            "bitmap",
+            bitmap1,
+            bitmap2
+        )
+
         bottomInfoList.add(homeInfo)
         bottomInfoList.add(CollectionInfo)
+        bottomInfoList.add(bitmapInfo)
         bottomInfoList.add(ChatInfo)
         bottomInfoList.add(ProfileInfo)
         tabBottomLayout.inflateInfo(bottomInfoList)
-        tabBottomLayout.addTabSelectedChangeListener{_,_, nextInfo ->
+        tabBottomLayout.addTabSelectedChangeListener { _, _, nextInfo ->
             Toast.makeText(this@DingBottomDemoActivity, nextInfo.name, Toast.LENGTH_SHORT).show()
         }
         tabBottomLayout.defaultSelected(homeInfo)
+        val tabBottom = tabBottomLayout.findTab(bottomInfoList[2])
+        tabBottom?.apply { resetHeight(DingDisplayUtil.dp2px(66f, resources)) }
     }
 }

@@ -4,4 +4,8 @@
     <string name="save">save</string>
 
     <string name="if_home">&#xe6d1;</string>
+    <string name="if_collection">&#xe6b7;</string>
+    <string name="if_chat">&#xe6b0;</string>
+    <string name="if_profile">&#xe6c4;</string>
+    <string name="test_tab_bottom">test_tab_bottom</string>
 </resources>

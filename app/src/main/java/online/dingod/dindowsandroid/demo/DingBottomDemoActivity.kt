@@ -60,7 +60,6 @@ class DingBottomDemoActivity : AppCompatActivity() {
         tabBottomLayout.inflateInfo(bottomInfoList)
         tabBottomLayout.addTabSelectedChangeListener{_,_, nextInfo ->
             Toast.makeText(this@DingBottomDemoActivity, nextInfo.name, Toast.LENGTH_SHORT).show()
-
         }
         tabBottomLayout.defaultSelected(homeInfo)
     }

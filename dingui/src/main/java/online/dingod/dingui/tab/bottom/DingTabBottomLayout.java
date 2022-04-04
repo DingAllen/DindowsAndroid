@@ -7,16 +7,20 @@ import android.view.Gravity;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.AbsListView;
 import android.widget.FrameLayout;
+import android.widget.ScrollView;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
+import androidx.recyclerview.widget.RecyclerView;
 
 import java.util.ArrayList;
 import java.util.Iterator;
 import java.util.List;
 
 import online.dingod.dinglibrary.util.DingDisplayUtil;
+import online.dingod.dinglibrary.util.DingViewUtil;
 import online.dingod.dingui.R;
 import online.dingod.dingui.tab.common.IDingTabLayout;
 
@@ -131,6 +135,7 @@ public class DingTabBottomLayout extends FrameLayout implements IDingTabLayout<D
         flParams.gravity = Gravity.BOTTOM;
         addBottomLine();
         addView(bottomFather, flParams);
+        fixContentView();
     }
 
     private void addBottomLine() {
@@ -157,5 +162,23 @@ public class DingTabBottomLayout extends FrameLayout implements IDingTabLayout<D
         params.gravity = Gravity.BOTTOM;
         addView(view, params);
         view.setAlpha(bottomAlpha);
+    }
+
+    private void fixContentView() {
+        if (!((getChildAt(0)) instanceof ViewGroup)) {
+            return;
+        }
+        ViewGroup rootView = (ViewGroup) getChildAt(0);
+        ViewGroup targetView = DingViewUtil.findTypeView(rootView, RecyclerView.class);
+        if (targetView == null) {
+            targetView = DingViewUtil.findTypeView(rootView, ScrollView.class);
+        }
+        if (targetView == null) {
+            targetView = DingViewUtil.findTypeView(rootView, AbsListView.class);
+        }
+        if (targetView != null) {
+            targetView.setPadding(0, 0, 0, DingDisplayUtil.dp2px(tabBottomHeight, getResources()));
+            targetView.setClipToPadding(false);
+        }
     }
 }

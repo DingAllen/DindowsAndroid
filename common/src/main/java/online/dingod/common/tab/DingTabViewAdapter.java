@@ -1,5 +1,6 @@
 package online.dingod.common.tab;
 
+import android.graphics.Bitmap;
 import android.view.View;
 
 import androidx.fragment.app.Fragment;
@@ -37,12 +38,14 @@ public class DingTabViewAdapter {
             currentTransaction.show(fragment);
         } else {
             fragment = getItem(position);
-            if (!fragment.isAdded()) {
+            if (fragment != null && !fragment.isAdded()) {
                 currentTransaction.add(container.getId(), fragment, name);
             }
         }
-        currentFragment = fragment;
-        currentTransaction.commitAllowingStateLoss();
+        if (fragment != null) {
+            currentFragment = fragment;
+            currentTransaction.commitAllowingStateLoss();
+        }
     }
 
     public Fragment getCurrentFragment() {
@@ -51,7 +54,8 @@ public class DingTabViewAdapter {
 
     public Fragment getItem(int position) {
         try {
-            return infoList.get(position).fragment.newInstance();
+
+            return infoList.get(position).fragment != null ? infoList.get(position).fragment.newInstance() : null;
         } catch (IllegalAccessException e) {
             e.printStackTrace();
         } catch (InstantiationException e) {

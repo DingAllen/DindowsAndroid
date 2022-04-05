@@ -9,4 +9,7 @@
     <string name="if_profile">&#xe6c4;</string>
     <string name="test_tab_bottom">test_tab_bottom</string>
     <string name="homepage">HomePage</string>
+    <string name="collection_page">collection-page</string>
+    <string name="chatpage">ChatPage</string>
+    <string name="profilepage">ProfilePage</string>
 </resources>

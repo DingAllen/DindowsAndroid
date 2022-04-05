@@ -1,6 +1,5 @@
 package online.dingod.common.tab;
 
-import android.graphics.Bitmap;
 import android.view.View;
 
 import androidx.fragment.app.Fragment;

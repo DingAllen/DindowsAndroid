@@ -5,9 +5,7 @@ import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.widget.Toast
 import online.dingod.dindowsandroid.R
-import online.dingod.dinglibrary.log.DingLog
 import online.dingod.dinglibrary.util.DingDisplayUtil
-import online.dingod.dingui.tab.bottom.DingTabBottom
 import online.dingod.dingui.tab.bottom.DingTabBottomInfo
 import online.dingod.dingui.tab.bottom.DingTabBottomLayout
 
@@ -60,11 +58,12 @@ class DingBottomDemoActivity : AppCompatActivity() {
             BitmapFactory.decodeResource(resources, R.drawable.gift, null)
         val bitmap2 =
             BitmapFactory.decodeResource(resources, R.drawable.heart, null)
-        val bitmapInfo = DingTabBottomInfo<String>(
-            "bitmap",
-            bitmap1,
-            bitmap2
-        )
+        val bitmapInfo =
+            DingTabBottomInfo<String>(
+                "bitmap",
+                bitmap1,
+                bitmap2
+            )
 
         bottomInfoList.add(homeInfo)
         bottomInfoList.add(CollectionInfo)

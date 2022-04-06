@@ -1,6 +1,7 @@
 package online.dingod.dingui.tab.top;
 
 import android.content.Context;
+import android.graphics.Rect;
 import android.util.AttributeSet;
 import android.view.View;
 import android.view.ViewGroup;
@@ -13,6 +14,7 @@ import java.util.ArrayList;
 import java.util.Iterator;
 import java.util.List;
 
+import online.dingod.dinglibrary.util.DingDisplayUtil;
 import online.dingod.dingui.tab.bottom.DingTabBottom;
 import online.dingod.dingui.tab.bottom.DingTabBottomInfo;
 import online.dingod.dingui.tab.common.IDingTabLayout;
@@ -22,6 +24,8 @@ public class DingTabTopLayout extends HorizontalScrollView implements IDingTabLa
     private List<OnTabSelectedListener<DingTabTopInfo<?>>> tabSelectedChangeListeners = new ArrayList<>();
     private DingTabTopInfo<?> selectedInfo;
     private List<DingTabTopInfo<?>> infoList;
+
+    private int tabWidth = 0;
 
     public DingTabTopLayout(Context context) {
         this(context, null);
@@ -110,5 +114,67 @@ public class DingTabTopLayout extends HorizontalScrollView implements IDingTabLa
             listener.onTabSelectedChange(infoList.indexOf(nextInfo), selectedInfo, nextInfo);
         }
         this.selectedInfo = nextInfo;
+        autoScroll(nextInfo);
+    }
+
+    private void autoScroll(@NonNull DingTabTopInfo<?> nextInfo) {
+        DingTabTop tab = findTab(nextInfo);
+        if (tab == null) {
+            return;
+        }
+        int index = infoList.indexOf(nextInfo);
+        int scrollWidth;
+        int[] loc = new int[2];
+        tab.getLocationInWindow(loc);
+        tabWidth = tab.getWidth();
+        if ((loc[0] + tabWidth / 2) > DingDisplayUtil.getDisplayWidthInPx(getContext()) / 2) {
+            scrollWidth = rangeScrollWidth(index, 2);
+        } else {
+            scrollWidth = rangeScrollWidth(index, -2);
+        }
+        scrollTo(getScrollX() + scrollWidth, 0);
+    }
+
+    private int rangeScrollWidth(int index, int range) {
+        int scrollWidth = 0;
+        for (int i = 0; i <= Math.abs(range); i++) {
+            int next;
+            if (range < 0) {
+                next = range + i + index;
+            } else {
+                next = range - i + index;
+            }
+            if (next >= 0 && next < infoList.size()) {
+                if (range < 0) {
+                    scrollWidth -= scrollWidth(next, false);
+                } else {
+                    scrollWidth += scrollWidth(next, true);
+                }
+            }
+        }
+        return scrollWidth;
+    }
+
+    private int scrollWidth(int index, boolean toRight) {
+        DingTabTop target = findTab(infoList.get(index));
+        if (target == null) {
+            return 0;
+        }
+        Rect rect = new Rect();
+        target.getLocalVisibleRect(rect);
+        if (toRight) {
+            if (rect.right > tabWidth) {
+                return tabWidth;
+            } else {
+                return tabWidth - rect.right;
+            }
+        } else {
+            if (rect.left <= -tabWidth) {
+                return tabWidth;
+            } else if (rect.left > 0) {
+                return rect.left;
+            }
+            return 0;
+        }
     }
 }

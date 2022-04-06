@@ -61,14 +61,25 @@ public class DingTabTop extends RelativeLayout implements IDingTab<DingTabTopInf
     private void inflateInfo(boolean selected, boolean init) {
 
         if (tabBottomInfo.tabType == DingTabTopInfo.TabType.TEXT) {
-
-        } else if (tabBottomInfo.tabType == DingTabTopInfo.TabType.BITMAP) {
             if (init) {
-                mTvName.setVisibility(GONE);
-                mIvImage.setVisibility(VISIBLE);
+                mIvImage.setVisibility(GONE);
+                mTvName.setVisibility(VISIBLE);
                 if (!TextUtils.isEmpty(tabBottomInfo.name)) {
                     mTvName.setText(tabBottomInfo.name);
                 }
+            }
+            if (selected) {
+                indicator.setVisibility(VISIBLE);
+                mTvName.setTextColor(getTextColor(tabBottomInfo.tintColor));
+            } else {
+                indicator.setVisibility(GONE);
+                mTvName.setTextColor(getTextColor(tabBottomInfo.defaultColor));
+            }
+        } else if (tabBottomInfo.tabType == DingTabTopInfo.TabType.BITMAP) {
+            if (init) {
+                indicator.setVisibility(GONE);
+                mTvName.setVisibility(GONE);
+                mIvImage.setVisibility(VISIBLE);
             }
             if (selected) {
                 mIvImage.setImageBitmap(tabBottomInfo.selectedBitmap);

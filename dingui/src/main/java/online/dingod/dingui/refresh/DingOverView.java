@@ -22,9 +22,13 @@ public abstract class DingOverView extends FrameLayout {
          */
         STATE_VISABLE,
         /**
-         * 超出可刷新距离的状态
+         * 刷新状态
          */
         STATE_REFRESH,
+        /**
+         * 超出可刷新距离的状态
+         */
+        STATE_OVER,
         /**
          * 超出刷新位置松开手后的状态
          */
@@ -90,6 +94,7 @@ public abstract class DingOverView extends FrameLayout {
 
     /**
      * 设置状态
+     *
      * @param State 状态
      */
     public void setState(DingRefreshState State) {
@@ -98,6 +103,7 @@ public abstract class DingOverView extends FrameLayout {
 
     /**
      * 获取状态
+     *
      * @return 状态
      */
     public DingRefreshState getState() {

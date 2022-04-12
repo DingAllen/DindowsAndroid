@@ -1,0 +1,7 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="text_visable">下拉刷新</string>
+    <string name="text_over">松开刷新</string>
+    <string name="text_refresh">正在刷新..</string>
+    <string name="text_finish">结束刷新</string>
+</resources>

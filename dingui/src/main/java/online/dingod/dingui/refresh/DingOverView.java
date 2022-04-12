@@ -7,6 +7,8 @@ import android.widget.FrameLayout;
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 
+import online.dingod.dinglibrary.util.DingDisplayUtil;
+
 /**
  * 下拉刷新的视图，可以通过重载这个类实现自定义刷新视图
  */
@@ -55,14 +57,22 @@ public abstract class DingOverView extends FrameLayout {
 
     public DingOverView(@NonNull Context context) {
         super(context);
+        preInit();
     }
 
     public DingOverView(@NonNull Context context, @Nullable AttributeSet attrs) {
         super(context, attrs);
+        preInit();
     }
 
     public DingOverView(@NonNull Context context, @Nullable AttributeSet attrs, int defStyleAttr) {
         super(context, attrs, defStyleAttr);
+        preInit();
+    }
+
+    protected void preInit() {
+        mPullRefreshHeight = DingDisplayUtil.dp2px(66, getResources());
+        init();
     }
 
     /**

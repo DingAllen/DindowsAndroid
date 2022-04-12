@@ -5,6 +5,7 @@ import android.util.AttributeSet;
 import android.view.GestureDetector;
 import android.view.MotionEvent;
 import android.view.View;
+import android.view.ViewGroup;
 import android.view.animation.LinearInterpolator;
 import android.widget.FrameLayout;
 import android.widget.Scroller;
@@ -37,6 +38,30 @@ public class DingRefreshLayout extends FrameLayout implements DingRefresh {
         init();
     }
 
+    @Override
+    protected void onLayout(boolean changed, int left, int top, int right, int bottom) {
+
+        // 定义head和child的排列位置
+        View head = getChildAt(0);
+        View child = getChildAt(1);
+
+        if (head != null && child != null) {
+            int childTop = child.getTop();
+            if (mState == DingOverView.DingRefreshState.STATE_REFRESH) {
+                head.layout(0, mDingOverView.mPullRefreshHeight - head.getMeasuredHeight(), right, mDingOverView.mPullRefreshHeight);
+                child.layout(0, mDingOverView.mPullRefreshHeight, right, mDingOverView.mPullRefreshHeight + child.getMeasuredHeight());
+            } else {
+                head.layout(0, childTop - head.getMeasuredHeight(), right, childTop);
+                child.layout(0, childTop, right, childTop + child.getMeasuredHeight());
+            }
+            View other;
+            for (int i = 2; i < getChildCount(); i++) {
+                other = getChildAt(i);
+                other.layout(0, top, right, bottom);
+            }
+        }
+    }
+
     private void init() {
         mGestureDetector = new GestureDetector(getContext(), dingGestureDetector);
         mAutoScroller = new AutoScroller();
@@ -66,7 +91,12 @@ public class DingRefreshLayout extends FrameLayout implements DingRefresh {
 
     @Override
     public void setRefreshOverView(DingOverView dingOverView) {
+        if (this.mDingOverView != null) {
+            removeView(mDingOverView);
+        }
         mDingOverView = dingOverView;
+        LayoutParams params = new LayoutParams(ViewGroup.LayoutParams.MATCH_PARENT, ViewGroup.LayoutParams.MATCH_PARENT);
+        addView(mDingOverView, 0, params);
     }
 
     DingGestureDetector dingGestureDetector = new DingGestureDetector() {

@@ -1,4 +1,4 @@
-package online.dingod.dingui.banner;
+package online.dingod.dingui.banner.core;
 
 import android.app.Activity;
 import android.content.Context;

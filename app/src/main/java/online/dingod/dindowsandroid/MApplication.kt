@@ -33,7 +33,7 @@ class MApplication : DingBaseApplication() {
                 }
             },
             DingConsolePrinter(),
-            DingFilePrinter(PATH)
+            // DingFilePrinter(PATH)
         )
     }
 }

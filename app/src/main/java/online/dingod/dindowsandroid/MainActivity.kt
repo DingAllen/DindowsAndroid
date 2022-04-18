@@ -1,9 +1,11 @@
 package online.dingod.dindowsandroid
 
+import android.content.Context
 import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.view.View
+import android.widget.Toast
 import online.dingod.dindowsandroid.demo.*
 
 class MainActivity : AppCompatActivity(), View.OnClickListener {
@@ -13,9 +15,9 @@ class MainActivity : AppCompatActivity(), View.OnClickListener {
     }
 
     override fun onClick(v: View?) {
-        when(v!!.id){
+        when (v!!.id) {
             R.id.btn_test -> {
-                startActivity(Intent(this, DingScrollDemoActivity ::class.java))
+                startActivity(Intent(this, DingScrollDemoActivity::class.java))
             }
         }
     }

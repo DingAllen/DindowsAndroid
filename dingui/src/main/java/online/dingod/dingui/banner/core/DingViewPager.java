@@ -118,7 +118,7 @@ public class DingViewPager extends ViewPager {
         }
         nextPosition = getCurrentItem() + 1;
         if (nextPosition >= getAdapter().getCount()) {
-            // TODO: 获取第一个item的索引
+            nextPosition = ((DingBannerAdapter) getAdapter()).getFirstItemIndex();
         }
         setCurrentItem(nextPosition, true);
         return nextPosition;

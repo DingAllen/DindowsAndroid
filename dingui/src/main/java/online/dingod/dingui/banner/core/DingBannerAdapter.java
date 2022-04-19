@@ -79,6 +79,7 @@ public class DingBannerAdapter extends PagerAdapter {
         if (container.equals(viewHolder.rootView.getParent())) {
             container.removeView(viewHolder.rootView);
         }
+        onBind(viewHolder, models.get(realPosition), realPosition);
         if (viewHolder.rootView.getParent() != null) {
             ((ViewGroup) viewHolder.rootView.getParent()).removeView(viewHolder.rootView);
         }
@@ -86,7 +87,28 @@ public class DingBannerAdapter extends PagerAdapter {
         return viewHolder.rootView;
     }
 
+    @Override
+    public int getItemPosition(@NonNull Object object) {
+        return POSITION_NONE;
+    }
 
+    @Override
+    public void destroyItem(@NonNull ViewGroup container, int position, @NonNull Object object) {
+    }
+
+    protected void onBind(@NonNull final DingBannerViewHolder viewHolder, @NonNull final DingBannerMo bannerMo, final int position) {
+        viewHolder.rootView.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                if (mBannerClickListener != null) {
+                    mBannerClickListener.onBannerClick(viewHolder, bannerMo, position);
+                }
+            }
+        });
+        if (mBindAdapter != null) {
+            mBindAdapter.onBind(viewHolder, bannerMo, position);
+        }
+    }
 
     private void initCachedView() {
         mCachedViews = new SparseArray<>();
@@ -104,10 +126,31 @@ public class DingBannerAdapter extends PagerAdapter {
     }
 
     public static class DingBannerViewHolder {
+
+        private SparseArray<View> viewSparseArray;
         View rootView;
 
         public DingBannerViewHolder(View rootView) {
             this.rootView = rootView;
+        }
+
+        public View getRootView() {
+            return rootView;
+        }
+
+        public <V extends View> V findViewById(int id) {
+            if (!(rootView instanceof ViewGroup)) {
+                return (V) rootView;
+            }
+            if (this.viewSparseArray == null) {
+                this.viewSparseArray = new SparseArray<>(1);
+            }
+            V childView = (V) viewSparseArray.get(id);
+            if (childView == null) {
+                childView = rootView.findViewById(id);
+                this.viewSparseArray.put(id, childView);
+            }
+            return childView;
         }
     }
 

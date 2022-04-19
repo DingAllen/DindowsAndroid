@@ -29,6 +29,6 @@ public interface IDingBanner {
     void setOnBannerCLickListener(OnBannerClickListener onBannerClickListener);
 
     interface OnBannerClickListener {
-        void onBannerClick(@NonNull DingBannerAdapter.DingBannerViewHolder viewHolder, @NonNull DingBannerMo bannerMo);
+        void onBannerClick(@NonNull DingBannerAdapter.DingBannerViewHolder viewHolder, @NonNull DingBannerMo bannerMo, int position);
     }
 }
